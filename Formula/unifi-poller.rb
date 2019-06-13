@@ -2,11 +2,11 @@
 require "language/go"
 
 class UnifiPoller < Formula
-  version "1.2.4-pre2"
-  sha256 "24ff3c88c6319a4031ddde28ea0c65ec2e60a472c99574eda33d1ae8832dd7d1"
+  version "1.3.0"
+  sha256 "cb162c3c7511f2685a8eb9adce4590c593c7989a2bb0b04b0b277272a9935320"
   url "https://github.com/davidnewhall/unifi-poller/archive/v#{version}.tar.gz"
   head "https://github.com/davidnewhall/unifi-poller"
-  desc "This daemon polls a Unifi controller at a short interval and stores the collected metric data in an Influx Database."
+  desc "This daemon polls a Unifi controller at a short interval and stores the collected measurements in an Influx Database."
   homepage "https://github.com/davidnewhall/unifi-poller"
 
   depends_on "go" => :build
