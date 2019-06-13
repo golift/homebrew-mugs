@@ -31,8 +31,8 @@ class UnifiPoller < Formula
   This application will not work until the config file has authentication
   information for a Unifi Controller and an Influx Database. Edit the config
   file at #{etc}/unifi-poller/up.conf then start the application with
-  brew services start unifi-poller ~ you do not need sudo.
-  The log file lives at: #{var}/log/unifi-poller/log
+  brew services start unifi-poller ~ log file: #{var}/log/unifi-poller/log
+  The manual explains the config file options: man unifi-poller
     EOS
   end
    def plist; <<-EOS
