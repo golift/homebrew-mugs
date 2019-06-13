@@ -3,7 +3,6 @@ require "language/go"
 
 class UnifiPoller < Formula
   version "1.3.0"
-  revision: 2
   sha256 "cb162c3c7511f2685a8eb9adce4590c593c7989a2bb0b04b0b277272a9935320"
   url "https://github.com/davidnewhall/unifi-poller/archive/v#{version}.tar.gz"
   head "https://github.com/davidnewhall/unifi-poller"
