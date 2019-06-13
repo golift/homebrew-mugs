@@ -3,6 +3,7 @@ require "language/go"
 
 class UnifiPoller < Formula
   version "1.3.0"
+  iteration: 1
   sha256 "cb162c3c7511f2685a8eb9adce4590c593c7989a2bb0b04b0b277272a9935320"
   url "https://github.com/davidnewhall/unifi-poller/archive/v#{version}.tar.gz"
   head "https://github.com/davidnewhall/unifi-poller"
@@ -27,7 +28,7 @@ class UnifiPoller < Formula
 
    plist_options :startup => true
 
-   def plist; <<-EOS.undent
+   def plist; <<-EOS
      <?xml version="1.0" encoding="UTF-8"?>
      <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
      <plist version="1.0">
