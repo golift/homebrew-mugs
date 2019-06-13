@@ -3,7 +3,7 @@ require "language/go"
 
 class UnifiPoller < Formula
   version "1.3.0"
-  revision 5
+  revision 7
   sha256 "cb162c3c7511f2685a8eb9adce4590c593c7989a2bb0b04b0b277272a9935320"
   url "https://github.com/davidnewhall/unifi-poller/archive/v#{version}.tar.gz"
   head "https://github.com/davidnewhall/unifi-poller"
@@ -26,9 +26,15 @@ class UnifiPoller < Formula
       system "mkdir", "-p", "#{var}/log/unifi-poller"
     end
   end
-
-   plist_options :startup => true
-
+  def caveats
+    s = <<-EOS
+  This application will not work until the config file has authentication
+  information for a Unifi Controller and an Influx Database. Edit the config
+  file at #{etc}/unifi-poller/up.conf then start the application with
+  brew services start unifi-poller ~ you do not need sudo.
+  The log file lives at: #{var}/log/unifi-poller/log
+    EOS
+  end
    def plist; <<-EOS
      <?xml version="1.0" encoding="UTF-8"?>
      <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -50,10 +56,6 @@ class UnifiPoller < Formula
              <string>#{var}/log/unifi-poller/log</string>
              <key>StandardOutPath</key>
              <string>#{var}/log/unifi-poller/log</string>
-             <key>UserName</key>
-             <string>nobody</string>
-             <key>GroupName</key>
-             <string>nobody</string>
          </dict>
      </plist>
      EOS
