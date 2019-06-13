@@ -23,6 +23,7 @@ class UnifiPoller < Formula
     cd bin_path do
       system "dep", "ensure"
       system "make", "install", "VERSION=#{version}", "PREFIX=#{prefix}", "ETC=#{etc}"
+      system "mkdir", "-p", "#{var}/log/unifi-poller"
     end
   end
 
