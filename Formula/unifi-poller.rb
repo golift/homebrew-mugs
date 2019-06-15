@@ -2,7 +2,7 @@
 require "language/go"
 
 class UnifiPoller < Formula
-  version "1.3.1"
+  version "1.3.2"
   sha256 ""
   url "https://github.com/davidnewhall/unifi-poller/archive/v#{version}.tar.gz"
   head "https://github.com/davidnewhall/unifi-poller"
