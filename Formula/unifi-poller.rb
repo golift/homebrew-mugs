@@ -1,9 +1,9 @@
-# Homebrew Formula, still under development - June 2019
+# Homebrew Formula Template. Built by Makefile: `make fomula`
 require "language/go"
 
 class UnifiPoller < Formula
-  version "1.3.2"
-  sha256 ""
+  version "1.3.3"
+  sha256 "e4a23c2514d230e3b2bebbea1bd29f9224606e847826d1bcc22bb42bd772db12"
   url "https://github.com/davidnewhall/unifi-poller/archive/v#{version}.tar.gz"
   head "https://github.com/davidnewhall/unifi-poller"
   desc "This daemon polls a Unifi controller at a short interval and stores the collected measurements in an Influx Database."
@@ -25,7 +25,7 @@ class UnifiPoller < Formula
       # If this fails, the user gets a nice big warning about write permissions on their
       # [/usr/local/]var/log folder. The alternative could be letting the app silently
       # fail to start when it cannot write logs. This is better. Fix perms; reinstall.
-      system "mkdir", "-p", "#{var}/log/unifi-poller"
+      system "touch", "#{var}/log/unifi-poller.log"
     end
   end
   def caveats
@@ -33,7 +33,7 @@ class UnifiPoller < Formula
   This application will not work until the config file has authentication
   information for a Unifi Controller and an Influx Database. Edit the config
   file at #{etc}/unifi-poller/up.conf then start the application with
-  brew services start unifi-poller ~ log file: #{var}/log/unifi-poller/log
+  brew services start unifi-poller ~ log file: #{var}/log/unifi-poller.log
   The manual explains the config file options: man unifi-poller
     EOS
   end
@@ -56,9 +56,9 @@ class UnifiPoller < Formula
            <key>KeepAlive</key>
            <true/>
            <key>StandardErrorPath</key>
-           <string>#{var}/log/unifi-poller/log</string>
+           <string>#{var}/log/unifi-poller.log</string>
            <key>StandardOutPath</key>
-           <string>#{var}/log/unifi-poller/log</string>
+           <string>#{var}/log/unifi-poller.log</string>
        </dict>
    </plist>
    EOS
