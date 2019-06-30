@@ -2,8 +2,8 @@
 class UnpackerPoller < Formula
   desc "Extracts Deluge downloads so Radarr or Sonarr may import them."
   homepage "https://github.com/davidnewhall/unpacker-poller"
-  url "https://github.com/davidnewhall/unpacker-poller/archive/v0.4.2.tar.gz"
-  sha256 "534671791c0eea15e5cd2bad02e112a17a9f6476537f90887431e89f18e2135a"
+  url "https://github.com/davidnewhall/unpacker-poller/archive/v.tar.gz"
+  sha256 "395408a3dc9c3db2b5c200b8722a13a60898c861633b99e6e250186adffd1370"
   head "https://github.com/davidnewhall/unpacker-poller"
 
   depends_on "go" => :build
