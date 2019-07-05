@@ -2,8 +2,8 @@
 class UnifiPoller < Formula
   desc "Polls a UniFi controller and stores metrics in InfluxDB"
   homepage "https://github.com/davidnewhall/unifi-poller"
-  url "https://github.com/davidnewhall/unifi-poller/archive/v1.4.0.tar.gz"
-  sha256 "528aa75bc6b6b473cd294820d5f3a7a1af90d3eba9b10615ad109b2bc5b21a7e"
+  url "https://github.com/davidnewhall/unifi-poller/archive/v1.4.1.tar.gz"
+  sha256 "bdcb0415efbe05bc921b6f6c21f871b82b6e4dcb34be78937176082746093e71"
   head "https://github.com/davidnewhall/unifi-poller"
 
   depends_on "go" => :build
