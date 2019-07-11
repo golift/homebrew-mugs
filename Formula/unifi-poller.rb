@@ -2,8 +2,8 @@
 class UnifiPoller < Formula
   desc "Polls a UniFi controller and stores metrics in InfluxDB"
   homepage "https://github.com/davidnewhall/unifi-poller"
-  url "https://github.com/davidnewhall/unifi-poller/archive/v1.4.2.tar.gz"
-  sha256 "5e8dd486f4b84244a03362cafc141e2b69701e860676511f42ddfa9b6aab6d46"
+  url "https://github.com/davidnewhall/unifi-poller/archive/v1.5.0.tar.gz"
+  sha256 "c178cf091581fe52a1d157c2accdc49b4b4f675c152a5a74470de0c567d9f43b"
   head "https://github.com/davidnewhall/unifi-poller"
 
   depends_on "go" => :build
@@ -15,28 +15,26 @@ class UnifiPoller < Formula
     bin_path = buildpath/"src/github.com/davidnewhall/unifi-poller"
     # Copy all files from their current location (GOPATH root)
     # to $GOPATH/src/github.com/davidnewhall/unifi-poller
-    bin_path.install Dir["*"]
+    bin_path.install Dir["*",".??*"]
     cd bin_path do
-      system "dep", "ensure", "-vendor-only"
-      system "make", "install", "VERSION=#{version}", "PREFIX=#{prefix}", "ETC=#{etc}"
+      system "dep", "ensure", "--vendor-only"
+      system "make", "install", "VERSION=#{version}", "ITERATION=336", "PREFIX=#{prefix}", "ETC=#{etc}"
       # If this fails, the user gets a nice big warning about write permissions on their
       # #{var}/log folder. The alternative could be letting the app silently fail
       # to start when it cannot write logs. This is better. Fix perms; reinstall.
-      touch("#{var}/log/unifi-poller.log")
+      touch("#{var}/log/#{name}.log")
     end
   end
 
   def caveats
     <<-EOS
-  This application will not work until the config file has authentication
-  information for a UniFi Controller and an Influx Database. Edit the config
-  file at #{etc}/unifi-poller/up.conf then start the application with
-  brew services start unifi-poller ~ log file: #{var}/log/unifi-poller.log
-  The manual explains the config file options: man unifi-poller
+  Edit the config file at #{etc}/#{name}/up.conf then start #{name} with
+  brew services start #{name} ~ log file: #{var}/log/#{name}.log
+  The manual explains the config file options: man #{name}
     EOS
   end
 
-  plist_options :startup => true
+  plist_options :startup => false
 
   def plist
     <<-EOS
@@ -48,24 +46,24 @@ class UnifiPoller < Formula
          <string>#{plist_name}</string>
          <key>ProgramArguments</key>
          <array>
-             <string>#{bin}/unifi-poller</string>
+             <string>#{bin}/#{name}</string>
              <string>-c</string>
-             <string>#{etc}/unifi-poller/up.conf</string>
+             <string>#{etc}/#{name}/up.conf</string>
          </array>
          <key>RunAtLoad</key>
          <true/>
          <key>KeepAlive</key>
          <true/>
          <key>StandardErrorPath</key>
-         <string>#{var}/log/unifi-poller.log</string>
+         <string>#{var}/log/#{name}.log</string>
          <key>StandardOutPath</key>
-         <string>#{var}/log/unifi-poller.log</string>
+         <string>#{var}/log/#{name}.log</string>
      </dict>
   </plist>
     EOS
   end
 
   test do
-    assert_match "unifi-poller v#{version}", shell_output("#{bin}/unifi-poller -v 2>&1", 2)
+    assert_match "#{name} v#{version}", shell_output("#{bin}/#{name} -v 2>&1", 2)
   end
 end
