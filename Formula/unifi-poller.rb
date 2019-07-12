@@ -2,7 +2,7 @@
 class UnifiPoller < Formula
   desc "Polls a UniFi controller and stores metrics in InfluxDB"
   homepage "https://github.com/davidnewhall/unifi-poller"
-  url "https://github.com/davidnewhall/unifi-poller/archive/v1.5.0.tar.gz"
+  url "http://bit.ly/2JtkKxX?v=v1.5.0"
   sha256 "c178cf091581fe52a1d157c2accdc49b4b4f675c152a5a74470de0c567d9f43b"
   head "https://github.com/davidnewhall/unifi-poller"
 
