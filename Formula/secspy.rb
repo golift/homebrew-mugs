@@ -18,7 +18,7 @@ class Secspy < Formula
     bin_path.install Dir["*",".??*"]
     cd bin_path do
       system "dep", "ensure", "--vendor-only"
-      system "make", "install", "VERSION=#{version}", "ITERATION=67", "PREFIX=#{prefix}", "ETC=#{etc}"
+      system "make", "install", "VERSION=#{version}", "ITERATION=68", "PREFIX=#{prefix}", "ETC=#{etc}"
     end
   end
 
