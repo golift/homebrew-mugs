@@ -2,8 +2,8 @@
 class Secspy < Formula
   desc "Command Line Interface for SecuritySpy (IP Camera NVR)"
   homepage "https://github.com/davidnewhall/secspy"
-  url http://bit.ly/2Jx2FiI?v=v0.0.9
-  sha256 "b1d69cbe87e23c54e959d3e31275047726dd76d35ca87b0c84189b4422da6f16"
+  url "http://bit.ly/2LLIcbk?v=v0.0.15"
+  sha256 "95a0d9e49c8ee522691230b8f95e74777afd53994ded4b72f683207ddaf8a69f"
   head "https://github.com/davidnewhall/secspy"
 
   depends_on "go" => :build
@@ -18,7 +18,7 @@ class Secspy < Formula
     bin_path.install Dir["*",".??*"]
     cd bin_path do
       system "dep", "ensure", "--vendor-only"
-      system "make", "install", "VERSION=#{version}", "ITERATION=71", "PREFIX=#{prefix}", "ETC=#{etc}"
+      system "make", "install", "VERSION=#{version}", "ITERATION=73", "PREFIX=#{prefix}", "ETC=#{etc}"
     end
   end
 
