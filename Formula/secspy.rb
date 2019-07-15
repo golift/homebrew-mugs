@@ -2,7 +2,7 @@
 class Secspy < Formula
   desc "Command Line Interface for SecuritySpy (IP Camera NVR)"
   homepage "https://github.com/davidnewhall/secspy"
-  url "http://bit.ly/2LLIcbk?v=v0.0.15"
+  url "https://code.golift.io/secspy/tar.gz/v0.0.15"
   sha256 "95a0d9e49c8ee522691230b8f95e74777afd53994ded4b72f683207ddaf8a69f"
   head "https://github.com/davidnewhall/secspy"
 
