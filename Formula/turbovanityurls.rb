@@ -5,7 +5,7 @@
 class Turbovanityurls < Formula
   desc "HTTP Server providing vanity go import paths."
   homepage "https://github.com/golift/turbovanityurls"
-  url "https://code.golift.io/turbovanityurls/archive/v0.0.1.tar.gz"
+  url "https://golift.io/turbovanityurls/archive/v0.0.1.tar.gz"
   sha256 "fe0c17526ce63d40106eba4d405547f9a5af8cb83f58bf48500257c854ceab4d"
   head "https://github.com/golift/turbovanityurls"
 
