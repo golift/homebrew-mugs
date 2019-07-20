@@ -5,7 +5,7 @@
 class UnifiPoller < Formula
   desc "Polls a UniFi controller and stores metrics in InfluxDB"
   homepage "https://github.com/davidnewhall/unifi-poller"
-  url "https://code.golift.io/unifi-poller/archive/v1.5.1.tar.gz"
+  url "https://golift.io/unifi-poller/archive/v1.5.1.tar.gz"
   sha256 "9b50708079facb9a54e7cb213f4257d4e3435fb8ba7f7f97b03f173818133008"
   head "https://github.com/davidnewhall/unifi-poller"
 
