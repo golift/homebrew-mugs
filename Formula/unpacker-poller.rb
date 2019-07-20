@@ -2,7 +2,7 @@
 class UnpackerPoller < Formula
   desc "Extracts Deluge downloads so Radarr or Sonarr may import them."
   homepage "https://github.com/davidnewhall/unpacker-poller"
-  url "https://code.golift.io/unpacker-poller/tar.gz/v0.5.1"
+  url "https://golift.io/unpacker-poller/tar.gz/v0.5.1"
   sha256 "b0988278ca76c43ef7750edc486a0e8279f550dca58869fdcb7efb4fce746889"
   head "https://github.com/davidnewhall/unpacker-poller"
 
