@@ -5,8 +5,8 @@
 class Turbovanityurls < Formula
   desc "HTTP Server providing vanity go import paths."
   homepage "https://github.com/golift/turbovanityurls"
-  url "https://code.golift.io/turbovanityurls/archive/v0.0.2.tar.gz"
-  sha256 "7f6a8e4ea8d83a0322fd5273687bf7b37f945f88983aa9d6d3476a6142d8406f"
+  url "https://golift.io/turbovanityurls/archive/v0.0.3.tar.gz"
+  sha256 "bf8aac618a3015c039d3645e3b7d265d8cac444666e57c7e4560889678056865"
   head "https://github.com/golift/turbovanityurls"
 
   depends_on "go" => :build
@@ -21,7 +21,7 @@ class Turbovanityurls < Formula
     bin_path.install Dir["*",".??*"]
     cd bin_path do
       system "dep", "ensure", "--vendor-only"
-      system "make", "install", "VERSION=#{version}", "ITERATION=85", "PREFIX=#{prefix}", "ETC=#{etc}"
+      system "make", "install", "VERSION=#{version}", "ITERATION=88", "PREFIX=#{prefix}", "ETC=#{etc}"
       # If this fails, the user gets a nice big warning about write permissions on their
       # #{var}/log folder. The alternative could be letting the app silently fail
       # to start when it cannot write logs. This is better. Fix perms; reinstall.
@@ -50,7 +50,7 @@ class Turbovanityurls < Formula
          <key>ProgramArguments</key>
          <array>
              <string>#{bin}/#{name}</string>
-             <string>--config</string>
+             <string>-c</string>
              <string>#{etc}/#{name}/config.yaml</string>
          </array>
          <key>RunAtLoad</key>
