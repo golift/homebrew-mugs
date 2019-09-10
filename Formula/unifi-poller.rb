@@ -3,10 +3,10 @@
 # https://github.com/golift/application-builder
 # This file is used when FORMULA is set to 'service'.
 class UnifiPoller < Formula
-  desc "Polls a UniFi controller and stores metrics in InfluxDB"
+  desc "Polls a UniFi controller and exports metrics to InfluxDB"
   homepage "https://github.com/davidnewhall/unifi-poller"
-  url "https://golift.io/unifi-poller/archive/v1.5.2.tar.gz"
-  sha256 "affcbb0f43f59c504df41a940733c32d3dd6e985ad7133c4b5d401eae371afe5"
+  url "https://golift.io/unifi-poller/archive/v1.5.3.tar.gz"
+  sha256 "e711b08c4ee8c07a8598a36aa0b27017d3c48960e8b2eb88157db1442e8446da"
   head "https://github.com/davidnewhall/unifi-poller"
 
   depends_on "go" => :build
@@ -21,7 +21,7 @@ class UnifiPoller < Formula
     bin_path.install Dir["*",".??*"]
     cd bin_path do
       system "dep", "ensure", "--vendor-only"
-      system "make", "install", "VERSION=#{version}", "ITERATION=372", "PREFIX=#{prefix}", "ETC=#{etc}"
+      system "make", "install", "VERSION=#{version}", "ITERATION=421", "PREFIX=#{prefix}", "ETC=#{etc}"
       # If this fails, the user gets a nice big warning about write permissions on their
       # #{var}/log folder. The alternative could be letting the app silently fail
       # to start when it cannot write logs. This is better. Fix perms; reinstall.
