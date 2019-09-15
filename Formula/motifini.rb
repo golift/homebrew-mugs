@@ -5,7 +5,7 @@
 class Motifini < Formula
   desc "SecuritySpy-iMessage Integrator and Messages.app API"
   homepage "https://github.com/golift/motifini"
-  url "https://codeload.github.com/golift/motifini/tar.gz/v0.0.1"
+  url "https://codeload.github.com/golift/motifini/tar.gz/v0.0.2"
   sha256 "0019dfc4b32d63c1392aa264aed2253c1e0c2fb09216f8e2cc269bbfb8bb49b5"
   head "https://github.com/golift/motifini"
 
@@ -21,7 +21,7 @@ class Motifini < Formula
     bin_path.install Dir["*",".??*"]
     cd bin_path do
       system "dep", "ensure", "--vendor-only"
-      system "make", "install", "VERSION=#{version}", "ITERATION=35", "PREFIX=#{prefix}", "ETC=#{etc}"
+      system "make", "install", "VERSION=#{version}", "ITERATION=48", "PREFIX=#{prefix}", "ETC=#{etc}"
       # If this fails, the user gets a nice big warning about write permissions on their
       # #{var}/log folder. The alternative could be letting the app silently fail
       # to start when it cannot write logs. This is better. Fix perms; reinstall.
