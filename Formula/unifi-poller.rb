@@ -1,27 +1,23 @@
 # Homebrew Formula Template. Built by Makefile: `make fomula`
 # This is part of Application Builder.
 # https://github.com/golift/application-builder
-# This file is used when FORMULA is set to 'service'.
 class UnifiPoller < Formula
   desc "Polls a UniFi controller, exports metrics to InfluxDB and Prometheus"
   homepage "https://github.com/davidnewhall/unifi-poller"
-  url "https://golift.io/unifi-poller/archive/v2.0.0-alpha1.tar.gz"
-  sha256 "3557c39a272113ceb9b649480ad5ff9fcc030abfa912f5d16a52527c1fb44ecf"
+  url "https://golift.io/unifi-poller/archive/v2.0.0-alfalfa1.tar.gz"
+  sha256 "c836ef2966aaa14c45d346d5d51413cb63893821d9e402b03d3afdc9f54db5ab"
   head "https://github.com/davidnewhall/unifi-poller"
 
   depends_on "go" => :build
   depends_on "dep"
 
   def install
-    ENV["GOPATH"] = buildpath
-
-    bin_path = buildpath/"src/github.com/davidnewhall/unifi-poller"
-    # Copy all files from their current location (GOPATH root)
-    # to $GOPATH/src/github.com/davidnewhall/unifi-poller
+    bin_path = buildpath/"#{name}"
+    # Copy all files from their current location to buildpath/#{name}
     bin_path.install Dir["*",".??*"]
     cd bin_path do
-      system "dep", "ensure", "--vendor-only"
-      system "make", "install", "VERSION=#{version}", "ITERATION=690", "PREFIX=#{prefix}", "ETC=#{etc}"
+      system "make" "vendor"
+      system "make", "install", "VERSION=#{version}", "ITERATION=698", "PREFIX=#{prefix}", "ETC=#{etc}"
       # If this fails, the user gets a nice big warning about write permissions on their
       # #{var}/log folder. The alternative could be letting the app silently fail
       # to start when it cannot write logs. This is better. Fix perms; reinstall.
