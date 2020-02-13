@@ -4,7 +4,7 @@
 class Unpackerr < Formula
   desc "Extracts downloads so Radarr or Sonarr may import them."
   homepage "https://davidnewhall/unpackerr/"
-  url "https://golift.io/unpackerr/archive/v0.6.2-beta1.tar.gz"
+  url "https://golift.io/unpackerr/archive/v0.7.0-beta1.tar.gz"
   sha256 "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   head "https://davidnewhall/unpackerr/"
 
