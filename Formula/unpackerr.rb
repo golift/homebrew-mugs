@@ -4,7 +4,7 @@
 class Unpackerr < Formula
   desc "Extracts downloads so Radarr or Sonarr may import them."
   homepage "https://davidnewhall/unpackerr/"
-  url "https://golift.io/unpackerr/archive/v0.7.0-beta2.tar.gz"
+  url "https://golift.io/unpackerr/archive/v0.7.0-beta3.tar.gz"
   sha256 "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   head "https://davidnewhall/unpackerr/"
 
@@ -15,7 +15,7 @@ class Unpackerr < Formula
     # Copy all files from their current location to buildpath/#{name}
     bin_path.install Dir["*",".??*"]
     cd bin_path do
-      system "make", "install", "VERSION=#{version}", "ITERATION=82", "PREFIX=#{prefix}", "ETC=#{etc}"
+      system "make", "install", "VERSION=#{version}", "ITERATION=92", "PREFIX=#{prefix}", "ETC=#{etc}"
       # If this fails, the user gets a nice big warning about write permissions on their
       # #{var}/log folder. The alternative could be letting the app silently fail
       # to start when it cannot write logs. This is better. Fix perms; reinstall.
