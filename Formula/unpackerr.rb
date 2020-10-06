@@ -3,10 +3,10 @@
 # https://github.com/golift/application-builder
 class Unpackerr < Formula
   desc "Extracts downloads so Radarr or Sonarr may import them."
-  homepage "https://davidnewhall/unpackerr/"
+  homepage "https://github.com/davidnewhall/unpackerr/"
   url "https://github.com/davidnewhall/unpackerr/archive/v0.7.1.tar.gz"
-  sha256 "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-  head "https://davidnewhall/unpackerr/"
+  sha256 "3a3d533b659f1f6c8b964ddc221b85c2411e810657c5e3458d7754a2c2e8c2e5"
+  head "https://github.com/davidnewhall/unpackerr/"
 
   depends_on "go" => :build
 
