@@ -1,24 +1,22 @@
 # Homebrew Formula Template. Built by Makefile: `make fomula`
+# This is part of Application Builder.
+# https://github.com/golift/application-builder
+# This file is used when FORMULA is set to 'service'.
 class HelloWorld < Formula
   desc "Example Service for GoLift Application Builder"
   homepage "https://github.com/golift/hello-world"
-  url "https://github.com/golift/hello-world/archive/v0.0.1.tar.gz"
+  url "https://codeload.github.com/golift/hello-world/tar.gz/v0.0.3"
   sha256 "0019dfc4b32d63c1392aa264aed2253c1e0c2fb09216f8e2cc269bbfb8bb49b5"
   head "https://github.com/golift/hello-world"
 
   depends_on "go" => :build
-  depends_on "dep"
 
   def install
-    ENV["GOPATH"] = buildpath
-
-    bin_path = buildpath/"src/github.com/golift/hello-world"
-    # Copy all files from their current location (GOPATH root)
-    # to $GOPATH/src/github.com/golift/hello-world
+    bin_path = buildpath/"#{name}"
+    # Copy all files from their current location to buildpath/#{name}
     bin_path.install Dir["*",".??*"]
     cd bin_path do
-      system "dep", "ensure", "--vendor-only"
-      system "make", "install", "VERSION=#{version}", "ITERATION=19", "PREFIX=#{prefix}", "ETC=#{etc}"
+      system "make", "install", "VERSION=#{version}", "ITERATION=41", "PREFIX=#{prefix}", "ETC=#{etc}"
       # If this fails, the user gets a nice big warning about write permissions on their
       # #{var}/log folder. The alternative could be letting the app silently fail
       # to start when it cannot write logs. This is better. Fix perms; reinstall.
