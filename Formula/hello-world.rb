@@ -6,7 +6,7 @@ class HelloWorld < Formula
   desc "Example Service for GoLift Application Builder"
   homepage "https://github.com/golift/application-builder"
   url "https://codeload.github.com/golift/application-builder/tar.gz/v0.0.3"
-  sha256 "f5b0b6d4ecbd05a9a8a4d4ccbc12c76fa3fa82d9f27c6764dfcb389be69e5812"
+  sha256 "677c0ef6dbed359429bccce354efc67acc302d1ff7324188d2ca81330c4765c3"
   head "https://github.com/golift/application-builder"
 
   depends_on "go" => :build
@@ -16,7 +16,7 @@ class HelloWorld < Formula
     # Copy all files from their current location to buildpath/#{name}
     bin_path.install Dir["*",".??*"]
     cd bin_path do
-      system "make", "install", "VERSION=#{version}", "ITERATION=42", "PREFIX=#{prefix}", "ETC=#{etc}"
+      system "make", "install", "VERSION=#{version}", "ITERATION=43", "PREFIX=#{prefix}", "ETC=#{etc}"
       # If this fails, the user gets a nice big warning about write permissions on their
       # #{var}/log folder. The alternative could be letting the app silently fail
       # to start when it cannot write logs. This is better. Fix perms; reinstall.
