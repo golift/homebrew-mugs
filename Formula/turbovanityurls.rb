@@ -5,23 +5,18 @@
 class Turbovanityurls < Formula
   desc "HTTP Server providing vanity go import paths."
   homepage "https://github.com/golift/turbovanityurls"
-  url "https://golift.io/turbovanityurls/archive/v0.0.3.tar.gz"
-  sha256 "bf8aac618a3015c039d3645e3b7d265d8cac444666e57c7e4560889678056865"
+  url "https://codeload.github.com/golift/turbovanityurls/tar.gz/v0.0.4"
+  sha256 "4b2514239ad4912f32c49ae2cbb1124d618e91c332575cd4c567ebd57efd9f1f"
   head "https://github.com/golift/turbovanityurls"
 
   depends_on "go" => :build
-  depends_on "dep"
 
   def install
-    ENV["GOPATH"] = buildpath
-
-    bin_path = buildpath/"src/github.com/golift/turbovanityurls"
-    # Copy all files from their current location (GOPATH root)
-    # to $GOPATH/src/github.com/golift/turbovanityurls
+    bin_path = buildpath/"#{name}"
+    # Copy all files from their current location to buildpath/#{name}
     bin_path.install Dir["*",".??*"]
     cd bin_path do
-      system "dep", "ensure", "--vendor-only"
-      system "make", "install", "VERSION=#{version}", "ITERATION=88", "PREFIX=#{prefix}", "ETC=#{etc}"
+      system "make", "install", "VERSION=#{version}", "ITERATION=106", "PREFIX=#{prefix}", "ETC=#{etc}"
       # If this fails, the user gets a nice big warning about write permissions on their
       # #{var}/log folder. The alternative could be letting the app silently fail
       # to start when it cannot write logs. This is better. Fix perms; reinstall.
@@ -50,7 +45,7 @@ class Turbovanityurls < Formula
          <key>ProgramArguments</key>
          <array>
              <string>#{bin}/#{name}</string>
-             <string>-c</string>
+             <string>--config</string>
              <string>#{etc}/#{name}/config.yaml</string>
          </array>
          <key>RunAtLoad</key>
