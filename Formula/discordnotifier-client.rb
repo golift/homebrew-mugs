@@ -5,8 +5,8 @@
 class DiscordnotifierClient < Formula
   desc "Unified Client for DiscordNotifier.com"
   homepage "https://github.com/Go-Lift-TV/discordnotifier-client"
-  url "https://codeload.github.com/Go-Lift-TV/discordnotifier-client/tar.gz/v0.0.3"
-  sha256 "108666e0967af9b0e9fed041cd262769587f15f57ba9affd41b766b850140f1c"
+  url "https://codeload.github.com/Go-Lift-TV/discordnotifier-client/tar.gz/v0.0.4"
+  sha256 "0e5e164eda2efd2077424b95c4cffb08f4e8fe3885ffa7f017746a4056b5f347"
   head "https://github.com/Go-Lift-TV/discordnotifier-client"
 
   depends_on "go" => :build
@@ -17,7 +17,7 @@ class DiscordnotifierClient < Formula
     # Copy all files from their current location to buildpath/#{name}
     bin_path.install Dir["*",".??*"]
     cd bin_path do
-      system "make", "install", "VERSION=#{version}", "ITERATION=27", "PREFIX=#{prefix}", "ETC=#{etc}"
+      system "make", "install", "VERSION=#{version}", "ITERATION=24", "PREFIX=#{prefix}", "ETC=#{etc}"
       # If this fails, the user gets a nice big warning about write permissions on their
       # #{var}/log folder. The alternative could be letting the app silently fail
       # to start when it cannot write logs. This is better. Fix perms; reinstall.
