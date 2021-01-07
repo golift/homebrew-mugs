@@ -4,10 +4,10 @@
 # This file is used when FORMULA is set to 'service'.
 class DiscordnotifierClient < Formula
   desc "Unified Client for DiscordNotifier.com"
-  homepage "https://github.com/Go-Lift-TV/discordnotifier-client"
-  url "https://codeload.github.com/Go-Lift-TV/discordnotifier-client/tar.gz/v0.0.4"
-  sha256 "0e5e164eda2efd2077424b95c4cffb08f4e8fe3885ffa7f017746a4056b5f347"
-  head "https://github.com/Go-Lift-TV/discordnotifier-client"
+  homepage "{{URL}}"
+  url "https://codeload.github.com/Go-Lift-TV/discordnotifier-client/tar.gz/v0.0.5"
+  sha256 "bfd4c20f2b480fa502039524f06308fbab780c3b9447b27c3296612c4143f6ac"
+  head "{{URL}}"
 
   depends_on "go" => :build
   depends_on "upx" => :build
@@ -17,7 +17,7 @@ class DiscordnotifierClient < Formula
     # Copy all files from their current location to buildpath/#{name}
     bin_path.install Dir["*",".??*"]
     cd bin_path do
-      system "make", "install", "VERSION=#{version}", "ITERATION=24", "PREFIX=#{prefix}", "ETC=#{etc}"
+      system "make", "install", "VERSION=#{version}", "ITERATION=27", "PREFIX=#{prefix}", "ETC=#{etc}"
       # If this fails, the user gets a nice big warning about write permissions on their
       # #{var}/log folder. The alternative could be letting the app silently fail
       # to start when it cannot write logs. This is better. Fix perms; reinstall.
