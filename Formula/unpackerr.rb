@@ -1,21 +1,23 @@
-# macOS Homebrew Formula Template. Built by Makefile: `make fomula`
+# Homebrew Formula Template. Built by Makefile: `make fomula`
 # This is part of Application Builder.
 # https://github.com/golift/application-builder
+# This file is used when FORMULA is set to 'service'.
 class Unpackerr < Formula
   desc "Extracts downloads so Radarr, Sonarr, Lidarr or Readarr may import them."
-  homepage "https://github.com/davidnewhall/unpackerr/"
-  url "https://golift.io/unpackerr/archive/v0.7.2.tar.gz"
-  sha256 "1e49e7888f1fa7397d9f68d7c9478b4c9f571c9cf67997fc0136908938bec7f6"
-  head "https://github.com/davidnewhall/unpackerr/"
+  homepage "{{URL}}"
+  url "https://golift.io/davidnewhall/unpackerr/archive/v0.8.0-beta1.tar.gz"
+  sha256 "40ec3516f256ea338fea1f71488eab95bf9d112da07209af930192d439940f7a"
+  head "{{URL}}"
 
   depends_on "go" => :build
+  depends_on "upx" => :build
 
   def install
     bin_path = buildpath/"#{name}"
     # Copy all files from their current location to buildpath/#{name}
     bin_path.install Dir["*",".??*"]
     cd bin_path do
-      system "make", "install", "VERSION=#{version}", "ITERATION=249", "PREFIX=#{prefix}", "ETC=#{etc}"
+      system "make", "install", "VERSION=#{version}", "ITERATION=322", "PREFIX=#{prefix}", "ETC=#{etc}"
       # If this fails, the user gets a nice big warning about write permissions on their
       # #{var}/log folder. The alternative could be letting the app silently fail
       # to start when it cannot write logs. This is better. Fix perms; reinstall.
