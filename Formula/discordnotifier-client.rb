@@ -5,8 +5,8 @@
 class DiscordnotifierClient < Formula
   desc "Unified Client for DiscordNotifier.com"
   homepage "{{URL}}"
-  url "https://codeload.github.com/Go-Lift-TV/discordnotifier-client/tar.gz/v0.0.7-b1"
-  sha256 "10497a9aaec24fa6f9a132217114595dce46e53e70fea8e5f1cc6286b2d08d9d"
+  url "https://codeload.github.com/Go-Lift-TV/discordnotifier-client/tar.gz/v0.0.7-b2"
+  sha256 "8240bba2f772beb554f04539c64b672302710445006e8d2635355f9cbcce0985"
   head "{{URL}}"
 
   depends_on "go" => :build
