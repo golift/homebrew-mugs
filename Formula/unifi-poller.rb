@@ -1,21 +1,23 @@
-# macOS Homebrew Formula Template. Built by Makefile: `make fomula`
+# Homebrew Formula Template. Built by Makefile: `make fomula`
 # This is part of Application Builder.
 # https://github.com/golift/application-builder
+# This file is used when FORMULA is set to 'service'.
 class UnifiPoller < Formula
   desc "Polls a UniFi controller, exports metrics to InfluxDB and Prometheus"
-  homepage "https://github.com/unifi-poller/unifi-poller"
-  url "https://golift.io/unifi-poller/archive/v2.0.2-beta1.tar.gz"
-  sha256 "4293cfc1dbd9fecdcbfa57654322545b62ffe0a882bd08f969510307ae64e796"
+  homepage "{{URL}}"
+  url "https://golift.io/unifi-poller/archive/v2.1.0.tar.gz"
+  sha256 "d2bb405d4317e8a16f23ae6d3624be72ec6c98fee6e2e06397bd8e4968bcc84a"
   head "https://github.com/unifi-poller/unifi-poller"
 
   depends_on "go" => :build
+  depends_on "upx" => :build
 
   def install
     bin_path = buildpath/"#{name}"
     # Copy all files from their current location to buildpath/#{name}
     bin_path.install Dir["*",".??*"]
     cd bin_path do
-      system "make", "install", "VERSION=#{version}", "ITERATION=842", "PREFIX=#{prefix}", "ETC=#{etc}"
+      system "make", "install", "VERSION=#{version}", "ITERATION=862", "PREFIX=#{prefix}", "ETC=#{etc}"
       # If this fails, the user gets a nice big warning about write permissions on their
       # #{var}/log folder. The alternative could be letting the app silently fail
       # to start when it cannot write logs. This is better. Fix perms; reinstall.
