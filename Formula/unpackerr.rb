@@ -5,8 +5,8 @@
 class Unpackerr < Formula
   desc "Extracts downloads so Radarr, Sonarr, Lidarr or Readarr may import them."
   homepage "{{URL}}"
-  url "https://golift.io/davidnewhall/unpackerr/archive/v0.9.3.tar.gz"
-  sha256 "da1d12d046be25f23126c016e4b9d4ceee70d808ffe140c289b38b551a450590"
+  url "https://golift.io/davidnewhall/unpackerr/archive/v0.9.4.tar.gz"
+  sha256 "5c10992fc402044b686b6b97e00bf9cc9128d1179e3234868f14890c0ea18656"
   head "{{URL}}"
 
   depends_on "go" => :build
@@ -17,7 +17,7 @@ class Unpackerr < Formula
     # Copy all files from their current location to buildpath/#{name}
     bin_path.install Dir["*",".??*"]
     cd bin_path do
-      system "make", "install", "VERSION=#{version}", "ITERATION=339", "PREFIX=#{prefix}", "ETC=#{etc}"
+      system "make", "install", "VERSION=#{version}", "ITERATION=350", "PREFIX=#{prefix}", "ETC=#{etc}"
       # If this fails, the user gets a nice big warning about write permissions on their
       # #{var}/log folder. The alternative could be letting the app silently fail
       # to start when it cannot write logs. This is better. Fix perms; reinstall.
