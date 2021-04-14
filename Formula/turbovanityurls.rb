@@ -4,10 +4,10 @@
 # This file is used when FORMULA is set to 'service'.
 class Turbovanityurls < Formula
   desc "HTTP Server providing vanity go import paths."
-  homepage "https://github.com/golift/turbovanityurls"
-  url "https://codeload.github.com/golift/turbovanityurls/tar.gz/v0.0.4"
-  sha256 "4b2514239ad4912f32c49ae2cbb1124d618e91c332575cd4c567ebd57efd9f1f"
-  head "https://github.com/golift/turbovanityurls"
+  homepage "{{URL}}"
+  url "https://codeload.github.com/golift/turbovanityurls/tar.gz/v0.0.5"
+  sha256 "cca4cd818d0b178b2fec7694c681007afb4dca066c518e9d71c62c7f693ac13d"
+  head "{{URL}}"
 
   depends_on "go" => :build
 
@@ -16,7 +16,7 @@ class Turbovanityurls < Formula
     # Copy all files from their current location to buildpath/#{name}
     bin_path.install Dir["*",".??*"]
     cd bin_path do
-      system "make", "install", "VERSION=#{version}", "ITERATION=106", "PREFIX=#{prefix}", "ETC=#{etc}"
+      system "make", "install", "VERSION=#{version}", "ITERATION=116", "PREFIX=#{prefix}", "ETC=#{etc}"
       # If this fails, the user gets a nice big warning about write permissions on their
       # #{var}/log folder. The alternative could be letting the app silently fail
       # to start when it cannot write logs. This is better. Fix perms; reinstall.
