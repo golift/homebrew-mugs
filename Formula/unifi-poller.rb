@@ -5,8 +5,8 @@
 class UnifiPoller < Formula
   desc "Polls a UniFi controller, exports metrics to InfluxDB and Prometheus"
   homepage "{{URL}}"
-  url "https://golift.io/unifi-poller/archive/v2.1.2.tar.gz"
-  sha256 "18101661a4ddd558942a8c8921e267855d71d2399a2718573a3ec668f9f6413a"
+  url "https://golift.io/unifi-poller/archive/v2.1.3.tar.gz"
+  sha256 "fb4930cb6c7a9fde187f2b57846c5bf183dfc6e04018f66609ccb1ade2cccb85"
   head "https://github.com/unifi-poller/unifi-poller"
 
   depends_on "go" => :build
@@ -17,7 +17,7 @@ class UnifiPoller < Formula
     # Copy all files from their current location to buildpath/#{name}
     bin_path.install Dir["*",".??*"]
     cd bin_path do
-      system "make", "install", "VERSION=#{version}", "ITERATION=886", "PREFIX=#{prefix}", "ETC=#{etc}"
+      system "make", "install", "VERSION=#{version}", "ITERATION=887", "PREFIX=#{prefix}", "ETC=#{etc}"
       # If this fails, the user gets a nice big warning about write permissions on their
       # #{var}/log folder. The alternative could be letting the app silently fail
       # to start when it cannot write logs. This is better. Fix perms; reinstall.
