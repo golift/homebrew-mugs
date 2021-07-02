@@ -5,9 +5,9 @@
 class UnifiPoller < Formula
   desc "Polls a UniFi controller, exports metrics to InfluxDB and Prometheus"
   homepage "{{URL}}"
-  url "https://golift.io/unifi-poller/archive/v2.1.3.tar.gz"
-  sha256 "fb4930cb6c7a9fde187f2b57846c5bf183dfc6e04018f66609ccb1ade2cccb85"
-  head "https://github.com/unifi-poller/unifi-poller"
+  url "https://golift.io/unpoller/archive/v2.1.3.tar.gz"
+  sha256 "76b3ce4971067f8a9d21529d51f72592d4cd2de66ac52681f857a30628c350a2"
+  head "https://github.com/unpoller/unpoller"
 
   depends_on "go" => :build
   depends_on "upx" => :build
