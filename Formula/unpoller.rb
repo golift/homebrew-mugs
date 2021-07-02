@@ -2,7 +2,7 @@
 # This is part of Application Builder.
 # https://github.com/golift/application-builder
 # This file is used when FORMULA is set to 'service'.
-class UnifiPoller < Formula
+class UnPoller < Formula
   desc "Polls a UniFi controller, exports metrics to InfluxDB and Prometheus"
   homepage "{{URL}}"
   url "https://golift.io/unpoller/archive/v2.1.3.tar.gz"
