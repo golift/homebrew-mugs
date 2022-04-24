@@ -5,12 +5,11 @@
 class Unpackerr < Formula
   desc "Extracts downloads so Radarr, Sonarr, Lidarr or Readarr may import them."
   homepage "{{URL}}"
-  url "https://golift.io/davidnewhall/unpackerr/archive/v0.9.9.tar.gz"
+  url "https://golift.io/unpackerr/archive/v0.9.9.tar.gz"
   sha256 "0ce895b3d2a377b2906e9894b13cd4e94aaaeea5029c8fb27bae799cfb93133f"
   head "{{URL}}"
 
   depends_on "go" => :build
-  depends_on "upx" => :build
 
   def install
     bin_path = buildpath/"#{name}"
