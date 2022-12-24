@@ -1,13 +1,9 @@
-# Homebrew Formula Template. Built by Makefile: `make fomula`
-# This is part of Application Builder.
-# https://github.com/golift/application-builder
-# This file is used when FORMULA is set to 'service'.
 class Notifiarr < Formula
   desc "Unified Client for Notifiarr.com"
-  homepage "{{URL}}"
-  url "https://codeload.github.com/Notifiarr/notifiarr/tar.gz/refs/tags/v0.4.3"
-  sha256 "e4e924dae92ff448c8b58a54bf7d8e4c4eb9cb763bf704e71eda203cf354c105"
-  head "{{URL}}"
+  homepage "https://notifiarr.com"
+  url "https://codeload.github.com/Notifiarr/notifiarr/tar.gz/refs/tags/v"
+  sha256 "e4e924dae92ff448c8b58a54bf7d8e4c4eb9cb763bf704e71eda203cf354c105 *stdin"
+  head "https://github.com/Notifiarr/notifiarr"
 
   depends_on "go" => :build
   depends_on "terminal-notifier"
@@ -17,7 +13,10 @@ class Notifiarr < Formula
     # Copy all files from their current location to buildpath/#{name}
     bin_path.install Dir["*",".??*"]
     cd bin_path do
-      system "make", "install", "VERSION=#{version}", "ITERATION=1146", "PREFIX=#{prefix}", "ETC=#{etc}"
+      system "go" "install" "github.com/swaggo/swag/cmd/swag@v1.8.7"
+      system "go" "install" "github.com/kevinburke/go-bindata/...@latest"
+      system "go" "install" "github.com/davidnewhall/md2roff@v0.0.1"
+      system "make", "install", "VERSION=#{version}", "ITERATION=1226", "PREFIX=#{prefix}", "ETC=#{etc}"
       # If this fails, the user gets a nice big warning about write permissions on their
       # #{var}/log folder. The alternative could be letting the app silently fail
       # to start when it cannot write logs. This is better. Fix perms; reinstall.
