@@ -13,9 +13,9 @@ class Notifiarr < Formula
     # Copy all files from their current location to buildpath/#{name}
     bin_path.install Dir["*",".??*"]
     cd bin_path do
-      system "go" "install" "github.com/swaggo/swag/cmd/swag@v1.8.7"
-      system "go" "install" "github.com/kevinburke/go-bindata/...@latest"
-      system "go" "install" "github.com/davidnewhall/md2roff@v0.0.1"
+      system "go", "install", "github.com/swaggo/swag/cmd/swag@v1.8.7"
+      system "go", "install", "github.com/kevinburke/go-bindata/...@latest"
+      system "go", "install", "github.com/davidnewhall/md2roff@v0.0.1"
       system "make", "install", "VERSION=#{version}", "ITERATION=1245", "PREFIX=#{prefix}", "ETC=#{etc}"
       # If this fails, the user gets a nice big warning about write permissions on their
       # #{var}/log folder. The alternative could be letting the app silently fail
