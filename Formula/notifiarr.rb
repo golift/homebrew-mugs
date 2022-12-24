@@ -16,7 +16,7 @@ class Notifiarr < Formula
       system "go" "install" "github.com/swaggo/swag/cmd/swag@v1.8.7"
       system "go" "install" "github.com/kevinburke/go-bindata/...@latest"
       system "go" "install" "github.com/davidnewhall/md2roff@v0.0.1"
-      system "make", "install", "VERSION=#{version}", "ITERATION=1233", "PREFIX=#{prefix}", "ETC=#{etc}"
+      system "make", "install", "VERSION=#{version}", "ITERATION=1234", "PREFIX=#{prefix}", "ETC=#{etc}"
       # If this fails, the user gets a nice big warning about write permissions on their
       # #{var}/log folder. The alternative could be letting the app silently fail
       # to start when it cannot write logs. This is better. Fix perms; reinstall.
