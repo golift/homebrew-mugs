@@ -2,7 +2,7 @@ class Notifiarr < Formula
   desc "Official Client for Notifiarr.com"
   homepage "https://notifiarr.com"
   url "https://github.com/Notifiarr/notifiarr/archive/v0.4.4.tar.gz"
-  sha256 "0a1399e4e7ab58ad22088f6dc219a1a66f1a24b518e3e49452092d1aacc66efc"
+  sha256 "d989b0b0cc87e841947452e7cec03074750690438804434e971494cd8b9da6c7"
   head "https://github.com/Notifiarr/notifiarr"
 
   depends_on "go" => :build
@@ -16,7 +16,7 @@ class Notifiarr < Formula
       system "go" "install" "github.com/swaggo/swag/cmd/swag@v1.8.7"
       system "go" "install" "github.com/kevinburke/go-bindata/...@latest"
       system "go" "install" "github.com/davidnewhall/md2roff@v0.0.1"
-      system "make", "install", "VERSION=#{version}", "ITERATION=1243", "PREFIX=#{prefix}", "ETC=#{etc}"
+      system "make", "install", "VERSION=#{version}", "ITERATION=1244", "PREFIX=#{prefix}", "ETC=#{etc}"
       # If this fails, the user gets a nice big warning about write permissions on their
       # #{var}/log folder. The alternative could be letting the app silently fail
       # to start when it cannot write logs. This is better. Fix perms; reinstall.
