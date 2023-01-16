@@ -1,13 +1,11 @@
 # Homebrew Formula Template. Built by Makefile: `make fomula`
-# This is part of Application Builder.
-# https://github.com/golift/application-builder
-# This file is used when FORMULA is set to 'service'.
+
 class Unpackerr < Formula
   desc "Extracts downloads so Radarr, Sonarr, Lidarr or Readarr may import them."
-  homepage "{{URL}}"
-  url "https://golift.io/unpackerr/archive/v0.10.1.tar.gz"
-  sha256 "3f272d3f8663dad635fb25bba077355a68c8faa067b26d954b78cce42d9b7145"
-  head "{{URL}}"
+  homepage "https://golift.io/unpackerr"
+  url "https://github.com/Unpackerr/unpackerr/archive/v0.11.1.tar.gz"
+  sha256 "3258c23a8d51f8f91465c73157150b06cc583c450d76209df198804b4fd7ba23"
+  head "https://github.com/Unpackerr/unpackerr"
 
   depends_on "go" => :build
 
@@ -16,7 +14,8 @@ class Unpackerr < Formula
     # Copy all files from their current location to buildpath/#{name}
     bin_path.install Dir["*",".??*"]
     cd bin_path do
-      system "make", "install", "VERSION=#{version}", "ITERATION=417", "PREFIX=#{prefix}", "ETC=#{etc}"
+      system "make", "generate"
+      system "make", "install", "VERSION=#{version}", "ITERATION=474", "PREFIX=#{prefix}", "ETC=#{etc}"
       # If this fails, the user gets a nice big warning about write permissions on their
       # #{var}/log folder. The alternative could be letting the app silently fail
       # to start when it cannot write logs. This is better. Fix perms; reinstall.
@@ -26,7 +25,7 @@ class Unpackerr < Formula
 
   def caveats
     <<-EOS
-  Edit the config file at #{etc}/#{name}/unpackerr.conf then start #{name} with
+  Edit the config file at #{etc}/#{name}/#{name}.conf then start #{name} with
   brew services start #{name} ~ log file: #{var}/log/#{name}.log
   The manual explains the config file options: man #{name}
     EOS
@@ -46,7 +45,7 @@ class Unpackerr < Formula
          <array>
              <string>#{bin}/#{name}</string>
              <string>--config</string>
-             <string>#{etc}/#{name}/unpackerr.conf</string>
+             <string>#{etc}/#{name}/#{name}.conf</string>
          </array>
          <key>RunAtLoad</key>
          <true/>
