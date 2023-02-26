@@ -1,23 +1,20 @@
 class Notifiarr < Formula
   desc "Official Client for Notifiarr.com"
   homepage "https://notifiarr.com"
-  url "https://github.com/Notifiarr/notifiarr/archive/v0.4.4.tar.gz"
-  sha256 "100095b6e2b3d91c0358130a9286833386aee7bd4bd47dc864f08259c4da2c4f"
-  head "https://github.com/Notifiarr/notifiarr"
+  url "https://github.com/Notifiarr/notifiarr/archive/v0.5.0.tar.gz"
+  sha256 "a76672c74c9d73821d6fa3e84f44b80ee32a27f3458d7ebbb2f3961e91a5ef79"
+  head "https://notifiarr.com"
 
   depends_on "go" => :build
   depends_on "terminal-notifier"
 
   def install
-    ENV["GOPATH"] = buildpath
     bin_path = buildpath/"#{name}"
     # Copy all files from their current location to buildpath/#{name}
     bin_path.install Dir["*",".??*"]
     cd bin_path do
-      system "go", "install", "github.com/swaggo/swag/cmd/swag@v1.8.7"
-      system "go", "install", "github.com/kevinburke/go-bindata/...@latest"
-      system "go", "install", "github.com/davidnewhall/md2roff@v0.0.1"
-      system "make", "install", "VERSION=#{version}", "ITERATION=1245", "PREFIX=#{prefix}", "ETC=#{etc}"
+      system "make", "generate"
+      system "make", "install", "VERSION=#{version}", "ITERATION=1419", "PREFIX=#{prefix}", "ETC=#{etc}"
       # If this fails, the user gets a nice big warning about write permissions on their
       # #{var}/log folder. The alternative could be letting the app silently fail
       # to start when it cannot write logs. This is better. Fix perms; reinstall.
