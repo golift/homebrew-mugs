@@ -1,8 +1,8 @@
 class Notifiarr < Formula
   desc "Official Client for Notifiarr.com"
   homepage "https://notifiarr.com"
-  url "https://github.com/Notifiarr/notifiarr/archive/v0.5.0.tar.gz"
-  sha256 "a76672c74c9d73821d6fa3e84f44b80ee32a27f3458d7ebbb2f3961e91a5ef79"
+  url "https://github.com/Notifiarr/notifiarr/archive/v0.5.1.tar.gz"
+  sha256 "7edf87646eb49b6736a69a0fad4e3e0a0a294e18e533be47725dfa16744ff71f"
   head "https://notifiarr.com"
 
   depends_on "go" => :build
@@ -14,7 +14,7 @@ class Notifiarr < Formula
     bin_path.install Dir["*",".??*"]
     cd bin_path do
       system "make", "generate"
-      system "make", "install", "VERSION=#{version}", "ITERATION=1419", "PREFIX=#{prefix}", "ETC=#{etc}"
+      system "make", "install", "VERSION=#{version}", "ITERATION=1504", "PREFIX=#{prefix}", "ETC=#{etc}"
       # If this fails, the user gets a nice big warning about write permissions on their
       # #{var}/log folder. The alternative could be letting the app silently fail
       # to start when it cannot write logs. This is better. Fix perms; reinstall.
