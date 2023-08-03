@@ -5,12 +5,12 @@
 class Unpoller < Formula
   desc "Polls a UniFi controller, exports metrics to InfluxDB, Prometheus and Datadog"
   homepage "https://unpoller.com/"
-  version "2.7.20"
+  version "2.8.0"
   license "MIT"
 
   on_macos do
-    url "https://github.com/unpoller/unpoller/releases/download/v2.7.20/unpoller_2.7.20_darwin_all.tar.gz"
-    sha256 "8cc0fabd8965affd2ea182aa2eb2b20c5a3eb2cb10dc30582cd8b4baca2f38b9"
+    url "https://github.com/unpoller/unpoller/releases/download/v2.8.0/unpoller_2.8.0_darwin_all.tar.gz"
+    sha256 "3d7add02338509896f54de6cc5eacec9a2e693bf6156de3f03993f40520fdb88"
 
     def install
       bin.install "unpoller"
@@ -19,24 +19,24 @@ class Unpoller < Formula
 
   on_linux do
     if Hardware::CPU.intel?
-      url "https://github.com/unpoller/unpoller/releases/download/v2.7.20/unpoller_2.7.20_linux_amd64.tar.gz"
-      sha256 "9be90fc5a9bd50b98dc25fdb41f90399baf76465c2f66661483b28f17a45e134"
+      url "https://github.com/unpoller/unpoller/releases/download/v2.8.0/unpoller_2.8.0_linux_amd64.tar.gz"
+      sha256 "ce2b86d1223ed9cc3c73216db2bf3d6aa14a8cd9d8f947ec56650030577dbe5a"
 
       def install
         bin.install "unpoller"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/unpoller/unpoller/releases/download/v2.7.20/unpoller_2.7.20_linux_arm64.tar.gz"
-      sha256 "8198d38f76be0bb894bc6c56dd58ee97a9af3c8358632831384cc09a10d8c329"
+      url "https://github.com/unpoller/unpoller/releases/download/v2.8.0/unpoller_2.8.0_linux_arm64.tar.gz"
+      sha256 "e111f8cd6e90c30f2ff3e3a4b82cd8928970b52056db2a4f66ac0c53b8228503"
 
       def install
         bin.install "unpoller"
       end
     end
     if Hardware::CPU.arm? && !Hardware::CPU.is_64_bit?
-      url "https://github.com/unpoller/unpoller/releases/download/v2.7.20/unpoller_2.7.20_linux_armv6.tar.gz"
-      sha256 "d9800e19bbb842953134c07a015284da9b10c33341fba1dca7398ff48bb9a146"
+      url "https://github.com/unpoller/unpoller/releases/download/v2.8.0/unpoller_2.8.0_linux_armv6.tar.gz"
+      sha256 "830fe28c69bcf4718abd99418c8077e8b60ba7480d90a6f751b8eb4c3b1dda58"
 
       def install
         bin.install "unpoller"
@@ -52,34 +52,11 @@ class Unpoller < Formula
     EOS
   end
 
-  plist_options startup: false
-
-  def plist
-    <<~EOS
-      <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-  <dict>
-      <key>Label</key>
-      <string>#{plist_name}</string>
-      <key>ProgramArguments</key>
-      <array>
-          <string>#{bin}/unpoller</string>
-          <string>--config</string>
-          <string>#{etc}/unpoller/up.conf</string>
-      </array>
-      <key>RunAtLoad</key>
-      <true/>
-      <key>KeepAlive</key>
-      <true/>
-      <key>StandardErrorPath</key>
-      <string>#{var}/log/unpoller.log</string>
-      <key>StandardOutPath</key>
-      <string>#{var}/log/unpoller.log</string>
-  </dict>
-</plist>
-
-    EOS
+  service do
+    run [opt_bin/"unpoller", "--config", etc/"unpoller/up.conf"]
+    keep_alive true
+    log_path var/"log/unpoller.log"
+    error_log_path var/"log/unpoller.log"
   end
 
   test do
