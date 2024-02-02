@@ -5,12 +5,12 @@
 class Xt < Formula
   desc "eXtractor Tool - Recursively decompress archives"
   homepage "https://unpackerr.com/"
-  version "0.0.2"
+  version "0.0.3"
   license "MIT"
 
   on_macos do
-    url "https://github.com/Unpackerr/xt/releases/download/v0.0.2/xt_0.0.2_darwin_all.tar.gz"
-    sha256 "b395ac53715c42bde0311c8a71b95c1bf3f414270bc0bab4f47cb5b40d25c2bf"
+    url "https://github.com/Unpackerr/xt/releases/download/v0.0.3/xt_0.0.3_darwin_all.tar.gz"
+    sha256 "608942810cd01af8c0fb2c9e51897ef523e5408bc7487410217ebbfca7652c17"
 
     def install
       bin.install "xt"
@@ -19,24 +19,24 @@ class Xt < Formula
 
   on_linux do
     if Hardware::CPU.arm? && !Hardware::CPU.is_64_bit?
-      url "https://github.com/Unpackerr/xt/releases/download/v0.0.2/xt_0.0.2_linux_armv6.tar.gz"
-      sha256 "aab7e5bb3e88c1506996e2b6ffc9823c0a66e77125b1455f79bdc243727a19bb"
-
-      def install
-        bin.install "xt"
-      end
-    end
-    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/Unpackerr/xt/releases/download/v0.0.2/xt_0.0.2_linux_arm64.tar.gz"
-      sha256 "1bbddb6133b0e471d3b4d9482309e4ca9d6bf97d74e43a179d66f7938a9681ef"
+      url "https://github.com/Unpackerr/xt/releases/download/v0.0.3/xt_0.0.3_linux_armv6.tar.gz"
+      sha256 "fb8c44279e22038b22cf8d3cb6ca2d371269b05b3c179eb47d241d6d7b3a1bf3"
 
       def install
         bin.install "xt"
       end
     end
     if Hardware::CPU.intel?
-      url "https://github.com/Unpackerr/xt/releases/download/v0.0.2/xt_0.0.2_linux_amd64.tar.gz"
-      sha256 "4a986040cfaa97e5fb0b9be46c3fa444e2a84d0d66166b509c516b908ca81eb8"
+      url "https://github.com/Unpackerr/xt/releases/download/v0.0.3/xt_0.0.3_linux_amd64.tar.gz"
+      sha256 "15e459ee90060029be3584037635a77371957bda875dd6821ab702eedeac6ba8"
+
+      def install
+        bin.install "xt"
+      end
+    end
+    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
+      url "https://github.com/Unpackerr/xt/releases/download/v0.0.3/xt_0.0.3_linux_arm64.tar.gz"
+      sha256 "3db22354c7954d8633ba5372fc785a8ef9f705899bbcbf95966d17aabcb03e22"
 
       def install
         bin.install "xt"
