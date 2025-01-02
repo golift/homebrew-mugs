@@ -5,12 +5,12 @@
 class Unpoller < Formula
   desc "Polls a UniFi controller, exports metrics to InfluxDB, Prometheus and Datadog"
   homepage "https://unpoller.com/"
-  version "2.12.0"
+  version "2.13.0"
   license "MIT"
 
   on_macos do
-    url "https://github.com/unpoller/unpoller/releases/download/v2.12.0/unpoller_2.12.0_darwin_all.tar.gz"
-    sha256 "6c0ddd48aef10aa74267fb71632a292750c0980966b3d6c7a489ea0c6c429efb"
+    url "https://github.com/unpoller/unpoller/releases/download/v2.13.0/unpoller_2.13.0_darwin_all.tar.gz"
+    sha256 "200faaea29ffb16c29273e8dadaa4c3036867878b3c2a5b9a0b14e5afa6e5a9f"
 
     def install
       bin.install "unpoller"
@@ -22,8 +22,8 @@ class Unpoller < Formula
   on_linux do
     if Hardware::CPU.intel?
       if Hardware::CPU.is_64_bit?
-        url "https://github.com/unpoller/unpoller/releases/download/v2.12.0/unpoller_2.12.0_linux_amd64.tar.gz"
-        sha256 "51b4b1dc5f117d4946dea60c16ff97dbee716c4b9d235ccd1d9853ee25a6ff25"
+        url "https://github.com/unpoller/unpoller/releases/download/v2.13.0/unpoller_2.13.0_linux_amd64.tar.gz"
+        sha256 "570121f1cc66cf65df506f1d54b16571d8e25cfff1fda32638a0537be0187895"
 
         def install
           bin.install "unpoller"
@@ -34,8 +34,8 @@ class Unpoller < Formula
     end
     if Hardware::CPU.arm?
       if !Hardware::CPU.is_64_bit?
-        url "https://github.com/unpoller/unpoller/releases/download/v2.12.0/unpoller_2.12.0_linux_armv6.tar.gz"
-        sha256 "4fb4817fa3bc22626001866f91fdda9313f1ca9e6748ca94eb7c7f37a0138055"
+        url "https://github.com/unpoller/unpoller/releases/download/v2.13.0/unpoller_2.13.0_linux_armv6.tar.gz"
+        sha256 "f052d60e31b0312eab9d905961e3ab25227f6c8832636a2a72501bc3501e21bd"
 
         def install
           bin.install "unpoller"
@@ -46,8 +46,8 @@ class Unpoller < Formula
     end
     if Hardware::CPU.arm?
       if Hardware::CPU.is_64_bit?
-        url "https://github.com/unpoller/unpoller/releases/download/v2.12.0/unpoller_2.12.0_linux_arm64.tar.gz"
-        sha256 "8a5e9a398bdd61e6d334c4fc60c54f7adfaad879046abd1b35e168fd06933e2a"
+        url "https://github.com/unpoller/unpoller/releases/download/v2.13.0/unpoller_2.13.0_linux_arm64.tar.gz"
+        sha256 "017e9953de9caf26c7de3856507a099f916e9b519d47fc3c0d31995c52b62cbd"
 
         def install
           bin.install "unpoller"
