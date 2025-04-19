@@ -5,12 +5,12 @@
 class Xt < Formula
   desc "eXtractor Tool - Recursively decompress archives"
   homepage "https://unpackerr.com/"
-  version "0.0.3"
+  version "0.1.1"
   license "MIT"
 
   on_macos do
-    url "https://github.com/Unpackerr/xt/releases/download/v0.0.3/xt_0.0.3_darwin_all.tar.gz"
-    sha256 "608942810cd01af8c0fb2c9e51897ef523e5408bc7487410217ebbfca7652c17"
+    url "https://github.com/Unpackerr/xt/releases/download/v0.1.1/xt_0.1.1_darwin_all.tar.gz"
+    sha256 "a761534a92d1340d0c1c31d3133813cf5c38bbf863d0c3f0ae26855b7ba79340"
 
     def install
       bin.install "xt"
@@ -18,28 +18,34 @@ class Xt < Formula
   end
 
   on_linux do
-    if Hardware::CPU.arm? && !Hardware::CPU.is_64_bit?
-      url "https://github.com/Unpackerr/xt/releases/download/v0.0.3/xt_0.0.3_linux_armv6.tar.gz"
-      sha256 "fb8c44279e22038b22cf8d3cb6ca2d371269b05b3c179eb47d241d6d7b3a1bf3"
-
-      def install
-        bin.install "xt"
-      end
-    end
     if Hardware::CPU.intel?
-      url "https://github.com/Unpackerr/xt/releases/download/v0.0.3/xt_0.0.3_linux_amd64.tar.gz"
-      sha256 "15e459ee90060029be3584037635a77371957bda875dd6821ab702eedeac6ba8"
+      if Hardware::CPU.is_64_bit?
+        url "https://github.com/Unpackerr/xt/releases/download/v0.1.1/xt_0.1.1_linux_amd64.tar.gz"
+        sha256 "06113a42ef5be37e0d1a61ddeda3450dd906cf120df23cf4b77673e38cb19ff9"
 
-      def install
-        bin.install "xt"
+        def install
+          bin.install "xt"
+        end
       end
     end
-    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/Unpackerr/xt/releases/download/v0.0.3/xt_0.0.3_linux_arm64.tar.gz"
-      sha256 "3db22354c7954d8633ba5372fc785a8ef9f705899bbcbf95966d17aabcb03e22"
+    if Hardware::CPU.arm?
+      if !Hardware::CPU.is_64_bit?
+        url "https://github.com/Unpackerr/xt/releases/download/v0.1.1/xt_0.1.1_linux_armv6.tar.gz"
+        sha256 "1111fc33ff335de65edf0b55442a20817aabcad1d27f99522129516a88caadbe"
 
-      def install
-        bin.install "xt"
+        def install
+          bin.install "xt"
+        end
+      end
+    end
+    if Hardware::CPU.arm?
+      if Hardware::CPU.is_64_bit?
+        url "https://github.com/Unpackerr/xt/releases/download/v0.1.1/xt_0.1.1_linux_arm64.tar.gz"
+        sha256 "c25e6a678fdcf55fc69e74786bf11e54579fd97e767715c9263389c429218090"
+
+        def install
+          bin.install "xt"
+        end
       end
     end
   end
