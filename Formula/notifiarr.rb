@@ -1,8 +1,8 @@
 class Notifiarr < Formula
   desc "Official Client for Notifiarr.com"
   homepage "https://notifiarr.com"
-  url "https://github.com/Notifiarr/notifiarr/archive/v0.8.0.tar.gz"
-  sha256 "64b761c9028f4999ef8e36e5a8da8e4d9a2da2b0b70b0c7b192ca4afe6c4533f"
+  url "https://github.com/Notifiarr/notifiarr/archive/refs/tags/v0.9.5.tar.gz"
+  sha256 "df29fd565d8dd42a5ed73e7f25358e1cd5b46d61a0f875e0d719005425675aa4"
   head "https://notifiarr.com"
 
   depends_on "go" => :build
