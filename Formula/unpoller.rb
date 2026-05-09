@@ -5,46 +5,46 @@
 class Unpoller < Formula
   desc "Polls a UniFi controller, exports metrics to InfluxDB, Prometheus and Datadog"
   homepage "https://unpoller.com/"
-  version "2.39.0"
+  version "3.1.1"
   license "MIT"
 
   on_macos do
-    url "https://github.com/unpoller/unpoller/releases/download/v2.39.0/unpoller_2.39.0_darwin_all.tar.gz"
-    sha256 "4120990821bd6e3fefcc24cb041717d94a4fb0391f0750adedd860a263a9c633"
+    url "https://github.com/unpoller/unpoller/releases/download/v3.1.1/unpoller_3.1.1_darwin_all.tar.gz"
+    sha256 "0609a6d94f5598810c2aacc1b010b69daff579514119bd89bdbf8181d7ee9acd"
 
     define_method(:install) do
       bin.install "unpoller"
       (etc/"unpoller").mkpath
-      etc.install "examples/up.conf" => "unpoller/up.conf.example"
+      etc.install "examples/up.conf.example" => "unpoller/up.conf.example"
     end
   end
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/unpoller/unpoller/releases/download/v2.39.0/unpoller_2.39.0_linux_amd64.tar.gz"
-      sha256 "2b217ada8e303e851750ce863b801963f916392db1ea8d5bdbdcf0c2a08b42e4"
+      url "https://github.com/unpoller/unpoller/releases/download/v3.1.1/unpoller_3.1.1_linux_amd64.tar.gz"
+      sha256 "3a54680f703868967eb6e336d84adccd2763e8d61f0178cd307cc62415288fb4"
       define_method(:install) do
         bin.install "unpoller"
         (etc/"unpoller").mkpath
-        etc.install "examples/up.conf" => "unpoller/up.conf.example"
+        etc.install "examples/up.conf.example" => "unpoller/up.conf.example"
       end
     end
     if Hardware::CPU.arm? && !Hardware::CPU.is_64_bit?
-      url "https://github.com/unpoller/unpoller/releases/download/v2.39.0/unpoller_2.39.0_linux_armv6.tar.gz"
-      sha256 "1f7f6c88f58acd51e13f9dd38d4b4fe63f52f9de2be8002940cd8464bda517eb"
+      url "https://github.com/unpoller/unpoller/releases/download/v3.1.1/unpoller_3.1.1_linux_armv6.tar.gz"
+      sha256 "3a9cc94736b0a71b00607b8a14d80d8bc47792929d6ec7bc49aad66817831c10"
       define_method(:install) do
         bin.install "unpoller"
         (etc/"unpoller").mkpath
-        etc.install "examples/up.conf" => "unpoller/up.conf.example"
+        etc.install "examples/up.conf.example" => "unpoller/up.conf.example"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/unpoller/unpoller/releases/download/v2.39.0/unpoller_2.39.0_linux_arm64.tar.gz"
-      sha256 "963d6c9f561ae6b9283070ad0759bab8ce4e39df6d15db1361f8f1706a61a24a"
+      url "https://github.com/unpoller/unpoller/releases/download/v3.1.1/unpoller_3.1.1_linux_arm64.tar.gz"
+      sha256 "02ef1135d8cdd37c036a24f103142160c5adcad32baa1d825a524620418a9ec4"
       define_method(:install) do
         bin.install "unpoller"
         (etc/"unpoller").mkpath
-        etc.install "examples/up.conf" => "unpoller/up.conf.example"
+        etc.install "examples/up.conf.example" => "unpoller/up.conf.example"
       end
     end
   end
@@ -52,7 +52,7 @@ class Unpoller < Formula
   conflicts_with "unifi-poller"
 
   def post_install
-    etc.install "examples/up.conf" => "unpoller/up.conf"
+    etc.install "examples/up.conf.example" => "unpoller/up.conf"
   end
 
   def caveats
