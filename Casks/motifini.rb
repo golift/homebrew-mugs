@@ -84,7 +84,7 @@ cask "motifini" do
   uninstall_preflight do
     label = "io.golift.motifini"
     agent = Pathname.new(Dir.home)/"Library/LaunchAgents/#{label}.plist"
-    system "/bin/launchctl", "bootout", "gui/#{Process.uid}", label
+    system "/bin/launchctl", "bootout", "gui/#{Process.uid}/#{label}"
     agent.delete if agent.exist?
   end
 
