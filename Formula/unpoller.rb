@@ -9,8 +9,8 @@ class Unpoller < Formula
   license "MIT"
 
   on_macos do
-    url "https://github.com/unpoller/unpoller/releases/download/v3.1.1/unpoller_3.1.1_darwin_all.tar.gz"
-    sha256 "0609a6d94f5598810c2aacc1b010b69daff579514119bd89bdbf8181d7ee9acd"
+    url "https://github.com/unpoller/unpoller/archive/refs/tags/v3.3.3.tar.gz"
+    sha256 "068c0f269434f9ec5fe45e8504fa17a976d71df62da701f6adfd94e8abcba002"
 
     define_method(:install) do
       bin.install "unpoller"
