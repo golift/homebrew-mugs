@@ -30,6 +30,8 @@ cask "motifini" do
 
   binary "motifini"
 
+  # Cask `service` installs ~/Library/Services (Automator), not LaunchAgents.
+  # Install a LaunchAgent ourselves so the daemon can be started/stopped with launchctl.
   postflight do
     example = Dir["#{staged_path}/**/motifini.conf.example"].first
     odie "motifini.conf.example missing from cask archive" unless example
@@ -38,11 +40,69 @@ cask "motifini" do
     conf_dir.mkpath
     FileUtils.cp example, conf_dir/"motifini.conf.example"
     FileUtils.cp example, conf_dir/"motifini.conf" unless (conf_dir/"motifini.conf").exist?
+
+    (HOMEBREW_PREFIX/"var/log").mkpath
+
+    label = "com.davidnewhall.motifini"
+    agent = Pathname.new(Dir.home)/"Library/LaunchAgents/#{label}.plist"
+    agent.dirname.mkpath
+
+    binary = HOMEBREW_PREFIX/"bin/motifini"
+    conf = conf_dir/"motifini.conf"
+    log = HOMEBREW_PREFIX/"var/log/motifini.log"
+
+    agent.write <<~XML
+      <?xml version="1.0" encoding="UTF-8"?>
+      <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+      <plist version="1.0">
+      <dict>
+        <key>Label</key>
+        <string>#{label}</string>
+        <key>ProgramArguments</key>
+        <array>
+          <string>#{binary}</string>
+          <string>--config</string>
+          <string>#{conf}</string>
+        </array>
+        <key>RunAtLoad</key>
+        <true/>
+        <key>KeepAlive</key>
+        <true/>
+        <key>WorkingDirectory</key>
+        <string>#{HOMEBREW_PREFIX}</string>
+        <key>StandardOutPath</key>
+        <string>#{log}</string>
+        <key>StandardErrorPath</key>
+        <string>#{log}</string>
+      </dict>
+      </plist>
+    XML
+
+    # Do not bootstrap here — user should edit the config first.
   end
 
+  uninstall_preflight do
+    label = "com.davidnewhall.motifini"
+    agent = Pathname.new(Dir.home)/"Library/LaunchAgents/#{label}.plist"
+    system "/bin/launchctl", "bootout", "gui/#{Process.uid}", label
+    agent.delete if agent.exist?
+  end
+
+  uninstall launchctl: "com.davidnewhall.motifini"
+
   caveats <<~EOS
-    Config: #{HOMEBREW_PREFIX}/etc/motifini.conf (example copied on install).
-    Run: motifini --config=#{HOMEBREW_PREFIX}/etc/motifini.conf
-    State/log paths in the example default to /opt/homebrew/var/... - adjust if brew --prefix differs.
+    Config: #{HOMEBREW_PREFIX}/etc/motifini.conf (edit before starting).
+    LaunchAgent installed (not started): ~/Library/LaunchAgents/com.davidnewhall.motifini.plist
+
+    Start (loads at login, KeepAlive):
+      launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.davidnewhall.motifini.plist
+    Restart:
+      launchctl kickstart -k gui/$(id -u)/com.davidnewhall.motifini
+    Stop:
+      launchctl bootout gui/$(id -u)/com.davidnewhall.motifini
+
+    brew services does not manage casks — use launchctl above.
+    State/log paths in the example default to /opt/homebrew/var/...; adjust if brew --prefix differs.
+    Log file: #{HOMEBREW_PREFIX}/var/log/motifini.log
   EOS
 end
