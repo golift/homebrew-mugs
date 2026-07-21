@@ -1,5 +1,4 @@
-# Manual fix: GoReleaser's service "..." wrapper breaks Ruby with nested quotes.
-# Next motifini release should regenerate a clean cask (wrap_in_directory: false).
+# Fixed for Homebrew 6+: cask `service` is a Moved artifact (plist path), not Formula `service do`.
 cask "motifini" do
   version "0.1.1"
 
@@ -32,13 +31,6 @@ cask "motifini" do
 
   binary "motifini"
 
-  service do
-    run [opt_bin/"motifini", "--config", etc/"motifini.conf"]
-    keep_alive true
-    log_path var/"log/motifini.log"
-    error_log_path var/"log/motifini.log"
-  end
-
   postflight do
     example = Dir["#{staged_path}/**/motifini.conf.example"].first
     odie "motifini.conf.example missing from cask archive" unless example
@@ -47,8 +39,9 @@ cask "motifini" do
   end
 
   caveats <<~EOS
-    Edit #{etc}/motifini.conf (example copied on install), then:
-      brew services start motifini
+    Config: #{etc}/motifini.conf (example copied on install).
+    Run in foreground: motifini --config=#{etc}/motifini.conf
+    Or use launchd/cron; Homebrew casks do not support Formula-style `brew services`.
     State/log paths in the example default to /opt/homebrew/var/... - adjust if brew --prefix differs.
   EOS
 end
