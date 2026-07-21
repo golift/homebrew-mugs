@@ -1,4 +1,3 @@
-# Fixed for Homebrew 6+: cask `service` is a Moved artifact (plist path), not Formula `service do`.
 cask "motifini" do
   version "0.1.1"
 
@@ -34,14 +33,16 @@ cask "motifini" do
   postflight do
     example = Dir["#{staged_path}/**/motifini.conf.example"].first
     odie "motifini.conf.example missing from cask archive" unless example
-    FileUtils.cp example, "#{etc}/motifini.conf.example"
-    FileUtils.cp example, "#{etc}/motifini.conf" unless File.exist?("#{etc}/motifini.conf")
+
+    conf_dir = HOMEBREW_PREFIX/"etc"
+    conf_dir.mkpath
+    FileUtils.cp example, conf_dir/"motifini.conf.example"
+    FileUtils.cp example, conf_dir/"motifini.conf" unless (conf_dir/"motifini.conf").exist?
   end
 
   caveats <<~EOS
-    Config: #{etc}/motifini.conf (example copied on install).
-    Run in foreground: motifini --config=#{etc}/motifini.conf
-    Or use launchd/cron; Homebrew casks do not support Formula-style `brew services`.
+    Config: #{HOMEBREW_PREFIX}/etc/motifini.conf (example copied on install).
+    Run: motifini --config=#{HOMEBREW_PREFIX}/etc/motifini.conf
     State/log paths in the example default to /opt/homebrew/var/... - adjust if brew --prefix differs.
   EOS
 end
