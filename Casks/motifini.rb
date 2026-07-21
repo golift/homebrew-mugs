@@ -43,7 +43,7 @@ cask "motifini" do
 
     (HOMEBREW_PREFIX/"var/log").mkpath
 
-    label = "com.davidnewhall.motifini"
+    label = "io.golift.motifini"
     agent = Pathname.new(Dir.home)/"Library/LaunchAgents/#{label}.plist"
     agent.dirname.mkpath
 
@@ -82,24 +82,24 @@ cask "motifini" do
   end
 
   uninstall_preflight do
-    label = "com.davidnewhall.motifini"
+    label = "io.golift.motifini"
     agent = Pathname.new(Dir.home)/"Library/LaunchAgents/#{label}.plist"
     system "/bin/launchctl", "bootout", "gui/#{Process.uid}", label
     agent.delete if agent.exist?
   end
 
-  uninstall launchctl: "com.davidnewhall.motifini"
+  uninstall launchctl: "io.golift.motifini"
 
   caveats <<~EOS
     Config: #{HOMEBREW_PREFIX}/etc/motifini.conf (edit before starting).
-    LaunchAgent installed (not started): ~/Library/LaunchAgents/com.davidnewhall.motifini.plist
+    LaunchAgent installed (not started): ~/Library/LaunchAgents/io.golift.motifini.plist
 
     Start (loads at login, KeepAlive):
-      launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.davidnewhall.motifini.plist
+      launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/io.golift.motifini.plist
     Restart:
-      launchctl kickstart -k gui/$(id -u)/com.davidnewhall.motifini
+      launchctl kickstart -k gui/$(id -u)/io.golift.motifini
     Stop:
-      launchctl bootout gui/$(id -u)/com.davidnewhall.motifini
+      launchctl bootout gui/$(id -u)/io.golift.motifini
 
     brew services does not manage casks — use launchctl above.
     State/log paths in the example default to /opt/homebrew/var/...; adjust if brew --prefix differs.
