@@ -1,6 +1,3 @@
 {
-  "unifi-poller": "unpoller",
-  "discordnotifier-client": "notifiarr",
-  "deluge-unpacker": "unpackerr",
-  "unpacker-poller": "unpackerr"
+  "unifi-poller": "unpoller"
 }
