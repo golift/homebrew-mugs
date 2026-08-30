@@ -9,8 +9,8 @@ class Xt < Formula
   license "MIT"
 
   on_macos do
-    url "https://github.com/Unpackerr/xt/releases/download/v0.2.0/xt_0.2.0_darwin_all.tar.gz"
-    sha256 "5988fb21159fc983e23802cef9ed85a592d951b8d4786643bc302b4aceb03d4b"
+    url "https://github.com/Unpackerr/xt/archive/refs/tags/v0.2.2.tar.gz"
+    sha256 "f5ca14a9f7b77e898654890520c1bda3288fd0080a6f8114ffe4f4d45793d1e5"
 
     define_method(:install) do
       bin.install "xt"
